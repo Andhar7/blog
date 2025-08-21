@@ -13,3 +13,12 @@ python3 manage.py createsuperuser
 
 # https://www.toptal.com/developers/gitignore 
 
+django-admin startapp blogs 
+
+python3 manage.py makemigrations
+
+python3 manage.py migrate
+
+pip install pillow
+
+pip freeze > requirements.txt
