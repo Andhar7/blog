@@ -1,5 +1,17 @@
 from django.shortcuts import render
+from blogs.models import Blog, Category
 
 
 def home(request):
-    return render(request, 'home.html') 
+    categories = Category.objects.all()
+    featured_posts = Blog.objects.filter(is_featured=True, status='Published').order_by('updated_at')
+    # featured_posts = Blog.objects.filter(is_featured=True)
+    posts = Blog.objects.filter(is_featured=False, status='Published') 
+    context = {
+        'categories': categories,
+        'featured_posts': featured_posts,
+        'posts': posts
+    }
+    # print(featured_posts)
+    # print(categories)
+    return render(request, 'home.html', context) 
